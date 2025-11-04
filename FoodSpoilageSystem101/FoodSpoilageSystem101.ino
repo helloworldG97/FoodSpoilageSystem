@@ -13,6 +13,8 @@
  * - Comprehensive error handling
  */
 
+ //goodluck guys <3 <3 
+
 // Blynk configuration
 #define BLYNK_TEMPLATE_ID "TMPL684zLhVAC"
 #define BLYNK_TEMPLATE_NAME "FOOD SPOILAGE"
@@ -21,7 +23,7 @@
 // Pin definitions - ESP32 ADC1 (WiFi COMPATIBLE)
 #define MQ135_PIN 35 
 #define MQ3_PIN 34   
-#define DHT_PIN 19
+#define DHT_PIN 4       
 #define RED_LED 12
 #define BLUE_LED 27  
 #define GREEN_LED 14
@@ -39,8 +41,8 @@
 #include <BlynkSimpleEsp32.h>
 
 // WiFi credentials
-char ssid[] = "Nepthys";
-char pass[] = "darylace";
+char ssid[] = "foodspoilage";
+char pass[] = "goodluck";
 
 // ============================================================================
 // SYSTEM STATE MACHINE
