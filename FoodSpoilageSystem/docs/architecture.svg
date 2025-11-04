@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-label="Food Spoilage Detection System Architecture">
+  <title>Food Spoilage Detection System Architecture</title>
+  <defs>
+    <style><![CDATA[
+      .node { fill: #ffffff; stroke: #333333; stroke-width: 2; }
+      .sensor { fill: #e3f2fd; }
+      .compute { fill: #e8f5e9; }
+      .process { fill: #fff3e0; }
+      .cloud { fill: #ede7f6; }
+      .alert { fill: #ffebee; }
+      .text { font: 16px Segoe UI, Arial, sans-serif; fill: #333333; }
+      .small { font: 13px Segoe UI, Arial, sans-serif; }
+      .line { stroke: #333333; stroke-width: 2; fill: none; }
+    ]]></style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333333"/>
+    </marker>
+  </defs>
+
+  <!-- Sensors -->
+  <rect class="node sensor" x="60" y="80" width="220" height="80" rx="10" ry="10"/>
+  <text class="text" x="170" y="110" text-anchor="middle">MQ135</text>
+  <text class="small" x="170" y="130" text-anchor="middle">Air Quality (RL≈20k)</text>
+
+  <rect class="node sensor" x="60" y="190" width="220" height="80" rx="10" ry="10"/>
+  <text class="text" x="170" y="220" text-anchor="middle">MQ3</text>
+  <text class="small" x="170" y="240" text-anchor="middle">Alcohol (RL≈1k)</text>
+
+  <rect class="node sensor" x="60" y="300" width="220" height="80" rx="10" ry="10"/>
+  <text class="text" x="170" y="330" text-anchor="middle">DHT11</text>
+  <text class="small" x="170" y="350" text-anchor="middle">Temperature / Humidity</text>
+
+  <rect class="node sensor" x="60" y="410" width="220" height="80" rx="10" ry="10"/>
+  <text class="text" x="170" y="440" text-anchor="middle">HC-SR04</text>
+  <text class="small" x="170" y="460" text-anchor="middle">Ultrasonic Distance</text>
+
+  <!-- ESP32 Block -->
+  <rect class="node compute" x="360" y="160" width="320" height="200" rx="12" ry="12"/>
+  <text class="text" x="520" y="190" text-anchor="middle">ESP32 Core</text>
+  <text class="small" x="520" y="210" text-anchor="middle">State Machine • Non-blocking Timing</text>
+  <text class="small" x="520" y="230" text-anchor="middle">Advanced Filtering • Env Compensation</text>
+  <text class="small" x="520" y="250" text-anchor="middle">Adaptive Thresholds (Baselines + Env)</text>
+  <text class="small" x="520" y="270" text-anchor="middle">Classification: Fresh / Warning / Spoiled</text>
+
+  <!-- Actuators -->
+  <rect class="node process" x="360" y="400" width="320" height="120" rx="12" ry="12"/>
+  <text class="text" x="520" y="430" text-anchor="middle">Outputs</text>
+  <text class="small" x="520" y="450" text-anchor="middle">LEDs (RGB), Buzzer, Relay</text>
+  <text class="small" x="520" y="470" text-anchor="middle">Ultrasonic → Relay (≤10cm)</text>
+
+  <!-- Blynk Cloud -->
+  <rect class="node cloud" x="780" y="160" width="320" height="200" rx="12" ry="12"/>
+  <text class="text" x="940" y="190" text-anchor="middle">Blynk Cloud / App</text>
+  <text class="small" x="940" y="210" text-anchor="middle">Live Telemetry: V0–V10</text>
+  <text class="small" x="940" y="230" text-anchor="middle">Events: food_fresh • food_warning_ • food_alert</text>
+  <text class="small" x="940" y="250" text-anchor="middle">Status text, ratios, temp/humidity</text>
+
+  <!-- Connections: Sensors to ESP32 -->
+  <line class="line" marker-end="url(#arrow)" x1="280" y1="120" x2="360" y2="190"/>
+  <line class="line" marker-end="url(#arrow)" x1="280" y1="230" x2="360" y2="210"/>
+  <line class="line" marker-end="url(#arrow)" x1="280" y1="340" x2="360" y2="230"/>
+  <line class="line" marker-end="url(#arrow)" x1="280" y1="450" x2="360" y2="250"/>
+
+  <!-- ESP32 to Outputs -->
+  <line class="line" marker-end="url(#arrow)" x1="520" y1="360" x2="520" y2="400"/>
+
+  <!-- ESP32 to Blynk -->
+  <line class="line" marker-end="url(#arrow)" x1="680" y1="220" x2="780" y2="220"/>
+  <text class="small" x="730" y="205" text-anchor="middle">WiFi</text>
+
+  <!-- Legend -->
+  <rect class="node" x="840" y="400" width="220" height="120" rx="10" ry="10"/>
+  <text class="text" x="950" y="425" text-anchor="middle">Legend</text>
+  <rect class="node sensor" x="860" y="440" width="20" height="14"/><text class="small" x="890" y="452">Sensor</text>
+  <rect class="node compute" x="920" y="440" width="20" height="14"/><text class="small" x="950" y="452">Compute</text>
+  <rect class="node process" x="980" y="440" width="20" height="14"/><text class="small" x="1010" y="452">Outputs</text>
+  <rect class="node cloud" x="1040" y="440" width="20" height="14"/><text class="small" x="1070" y="452">Cloud/App</text>
+
+</svg>
+

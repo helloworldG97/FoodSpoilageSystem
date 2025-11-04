@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Food Spoilage Detection System Flowchart">
+  <title>Food Spoilage Detection System Flowchart</title>
+  <defs>
+    <style><![CDATA[
+      .node { fill: #ffffff; stroke: #333333; stroke-width: 2; }
+      .start { fill: #e0f7fa; }
+      .state { fill: #e8f5e9; }
+      .decision { fill: #fff3e0; }
+      .process { fill: #ede7f6; }
+      .alert { fill: #ffebee; }
+      .text { font: 14px Segoe UI, Arial, sans-serif; fill: #333333; }
+      .small { font: 12px Segoe UI, Arial, sans-serif; }
+      .line { stroke: #333333; stroke-width: 2; fill: none; }
+      .dashed { stroke-dasharray: 6 4; }
+    ]]></style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333333"/>
+    </marker>
+  </defs>
+
+  <!-- Start -->
+  <ellipse class="node start" cx="140" cy="60" rx="80" ry="28"/>
+  <text class="text" x="140" y="64" text-anchor="middle">Power On</text>
+
+  <!-- Initializing -->
+  <rect class="node state" x="60" y="110" width="160" height="60" rx="8" ry="8"/>
+  <text class="text" x="140" y="140" text-anchor="middle">STATE_INITIALIZING</text>
+  <text class="small" x="140" y="158" text-anchor="middle">WiFi + Blynk setup</text>
+
+  <!-- WiFi decision -->
+  <polygon class="node decision" points="260,140 320,110 380,140 320,170"/>
+  <text class="text" x="320" y="140" text-anchor="middle">WiFi connected?</text>
+
+  <!-- Preheating -->
+  <rect class="node state" x="420" y="110" width="200" height="60" rx="8" ry="8"/>
+  <text class="text" x="520" y="140" text-anchor="middle">STATE_PREHEATING</text>
+  <text class="small" x="520" y="158" text-anchor="middle">15 min, progress → V0</text>
+
+  <!-- Preheat decision -->
+  <polygon class="node decision" points="620,230 680,200 740,230 680,260"/>
+  <text class="text" x="680" y="230" text-anchor="middle">Preheat complete?</text>
+
+  <!-- Ready for calibration -->
+  <rect class="node state" x="600" y="310" width="240" height="60" rx="8" ry="8"/>
+  <text class="text" x="720" y="340" text-anchor="middle">STATE_READY_FOR_CALIBRATION</text>
+  <text class="small" x="720" y="358" text-anchor="middle">Solid Blue, press button</text>
+
+  <!-- Calibrating -->
+  <rect class="node state" x="600" y="400" width="240" height="60" rx="8" ry="8"/>
+  <text class="text" x="720" y="430" text-anchor="middle">STATE_CALIBRATING</text>
+  <text class="small" x="720" y="448" text-anchor="middle">10s @10Hz sampling</text>
+
+  <!-- Calibration steps -->
+  <rect class="node process" x="880" y="396" width="280" height="120" rx="8" ry="8"/>
+  <text class="text" x="1020" y="420" text-anchor="middle">Calibration Steps</text>
+  <text class="small" x="1020" y="440" text-anchor="middle">Filter → RS → R0</text>
+  <text class="small" x="1020" y="456" text-anchor="middle">EnvCompensator calibrate</text>
+  <text class="small" x="1020" y="472" text-anchor="middle">Beep ×2, Ready</text>
+
+  <!-- Monitoring -->
+  <rect class="node state" x="600" y="520" width="240" height="60" rx="8" ry="8"/>
+  <text class="text" x="720" y="550" text-anchor="middle">STATE_MONITORING</text>
+
+  <!-- Monitoring loop details -->
+  <rect class="node process" x="320" y="600" width="540" height="160" rx="8" ry="8"/>
+  <text class="text" x="590" y="624" text-anchor="middle">Monitoring Loop</text>
+  <text class="small" x="590" y="642" text-anchor="middle">Read → Filter → Compensate → Ratios → Adapt → Classify</text>
+  <text class="small" x="590" y="660" text-anchor="middle">Update LEDs/Blynk; Beep on change</text>
+  <text class="small" x="590" y="678" text-anchor="middle">Ultrasonic+Relay @10Hz</text>
+  <text class="small" x="590" y="696" text-anchor="middle">Print readings ~30s</text>
+
+  <!-- Classification outcomes -->
+  <rect class="node process" x="260" y="780" width="180" height="60" rx="8" ry="8"/>
+  <text class="text" x="350" y="810" text-anchor="middle">Fresh</text>
+  <text class="small" x="350" y="828" text-anchor="middle">LED: Green, event: food_fresh</text>
+
+  <rect class="node process" x="500" y="780" width="200" height="60" rx="8" ry="8"/>
+  <text class="text" x="600" y="810" text-anchor="middle">About to Spoil</text>
+  <text class="small" x="600" y="828" text-anchor="middle">LED: Yellow, event: food_warning_</text>
+
+  <rect class="node alert" x="740" y="780" width="180" height="60" rx="8" ry="8"/>
+  <text class="text" x="830" y="810" text-anchor="middle">Spoiled</text>
+  <text class="small" x="830" y="828" text-anchor="middle">LED: Red, event: food_alert</text>
+
+  <!-- SafetyMonitor and Error -->
+  <polygon class="node decision" points="980,620 1040,590 1100,620 1040,650"/>
+  <text class="text" x="1040" y="620" text-anchor="middle">Overheat?</text>
+
+  <rect class="node alert" x="960" y="700" width="160" height="60" rx="8" ry="8"/>
+  <text class="text" x="1040" y="730" text-anchor="middle">STATE_ERROR</text>
+  <text class="small" x="1040" y="748" text-anchor="middle">Flash Red, Relay HIGH</text>
+
+  <!-- Connectors -->
+  <line class="line" marker-end="url(#arrow)" x1="140" y1="88" x2="140" y2="110"/>
+  <line class="line" marker-end="url(#arrow)" x1="220" y1="140" x2="260" y2="140"/>
+  <line class="line" marker-end="url(#arrow)" x1="380" y1="140" x2="420" y2="140"/>
+  <text class="small" x="400" y="128" text-anchor="middle">Yes</text>
+
+  <!-- No: loop back -->
+  <path class="line dashed" marker-end="url(#arrow)" d="M 320 170 C 300 200, 200 200, 140 170"/>
+  <text class="small" x="280" y="188" text-anchor="middle">No</text>
+
+  <!-- Preheating to decision -->
+  <line class="line" marker-end="url(#arrow)" x1="520" y1="170" x2="620" y2="230"/>
+
+  <!-- Preheat decision yes/no -->
+  <line class="line" marker-end="url(#arrow)" x1="740" y1="230" x2="720" y2="310"/>
+  <text class="small" x="736" y="264" text-anchor="start">Yes</text>
+  <path class="line dashed" marker-end="url(#arrow)" d="M 680 260 C 680 280, 520 260, 520 170"/>
+  <text class="small" x="600" y="248" text-anchor="middle">No</text>
+
+  <!-- Ready to Calibrating (button pressed) -->
+  <line class="line" marker-end="url(#arrow)" x1="720" y1="370" x2="720" y2="400"/>
+  <text class="small" x="740" y="388" text-anchor="start">Button pressed</text>
+
+  <!-- Calibrating to details -->
+  <line class="line" marker-end="url(#arrow)" x1="840" y1="430" x2="880" y2="430"/>
+
+  <!-- Calibrating to Monitoring -->
+  <line class="line" marker-end="url(#arrow)" x1="720" y1="460" x2="720" y2="520"/>
+
+  <!-- Monitoring to Monitoring Loop box -->
+  <line class="line" marker-end="url(#arrow)" x1="720" y1="580" x2="590" y2="600"/>
+
+  <!-- Monitoring loop to outcomes -->
+  <line class="line" marker-end="url(#arrow)" x1="590" y1="760" x2="350" y2="780"/>
+  <line class="line" marker-end="url(#arrow)" x1="590" y1="760" x2="600" y2="780"/>
+  <line class="line" marker-end="url(#arrow)" x1="590" y1="760" x2="830" y2="780"/>
+
+  <!-- Monitoring to Safety decision -->
+  <line class="line" marker-end="url(#arrow)" x1="860" y1="640" x2="980" y2="620"/>
+
+  <!-- Safety decision to Error -->
+  <line class="line" marker-end="url(#arrow)" x1="1040" y1="650" x2="1040" y2="700"/>
+  <text class="small" x="1060" y="674" text-anchor="start">Yes</text>
+  <!-- No back to Monitoring loop -->
+  <path class="line dashed" marker-end="url(#arrow)" d="M 980 620 C 920 600, 860 600, 860 640"/>
+  <text class="small" x="942" y="606" text-anchor="middle">No</text>
+
+  <!-- Legend -->
+  <rect class="node" x="60" y="710" width="190" height="130" rx="8" ry="8"/>
+  <text class="text" x="155" y="732" text-anchor="middle">Legend</text>
+  <rect class="node start" x="80" y="744" width="20" height="12"/><text class="small" x="110" y="754">Start</text>
+  <rect class="node state" x="80" y="768" width="20" height="12"/><text class="small" x="110" y="778">State</text>
+  <rect class="node process" x="80" y="792" width="20" height="12"/><text class="small" x="110" y="802">Process</text>
+  <rect class="node decision" x="80" y="816" width="20" height="12"/><text class="small" x="110" y="826">Decision</text>
+  <rect class="node alert" x="80" y="840" width="20" height="12"/><text class="small" x="110" y="850">Alert</text>
+
+</svg>
+
