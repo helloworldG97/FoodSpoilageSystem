@@ -16,9 +16,9 @@
  //goodluck guys <3 <3 
 
 // Blynk configuration
-#define BLYNK_TEMPLATE_ID "TMPL684zLhVAC"
-#define BLYNK_TEMPLATE_NAME "FOOD SPOILAGE"
-#define BLYNK_AUTH_TOKEN "UqM8-wEm4HIzy6rtStzxzDsfxz5eEVpZ"
+#define BLYNK_TEMPLATE_ID "..............."
+#define BLYNK_TEMPLATE_NAME "................."
+#define BLYNK_AUTH_TOKEN "..............."
 
 // Pin definitions - ESP32 ADC1 (WiFi COMPATIBLE)
 #define MQ135_PIN 35 
