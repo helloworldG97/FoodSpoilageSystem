@@ -1,3 +1,6 @@
+
+# Daryl James Padogdog was here
+
 # Food Spoilage Detection System (ESP32)
 
 ## Circuit Diagram
