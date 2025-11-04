@@ -179,3 +179,26 @@ Other constants:
 - Calibrate in clean air, away from strong odors or alcohol.
 - Let MQ sensors fully preheat for best stability.
 - Keep ESP32 ADC attenuation set (`ADC_11db`) as in code for consistent readings.
+
+## Documentation Gallery
+
+Below are build photos collected during development.
+
+<p>
+  <img src="FoodSpoilageSystem/imagesdocumentation/1ea1e13f-de85-4b7b-8a24-a85d9d1c9f9f.jpg" alt="Photo 1" width="720">
+</p>
+<p>
+  <img src="FoodSpoilageSystem/imagesdocumentation/3bc1ff64-ab51-430c-8af5-7d12d383c1d5.jpg" alt="Photo 2" width="720">
+</p>
+<p>
+  <img src="FoodSpoilageSystem/imagesdocumentation/6287fa3e-cfff-4337-a505-3f3321c6e68b.jpg" alt="Photo 3" width="720">
+</p>
+<p>
+  <img src="FoodSpoilageSystem/imagesdocumentation/642288ac-535b-4f69-b3f8-785f6a821086.jpg" alt="Photo 4" width="720">
+</p>
+<p>
+  <img src="FoodSpoilageSystem/imagesdocumentation/7b35b891-786d-4584-8d3e-5292366bafab.jpg" alt="Photo 5" width="720">
+</p>
+<p>
+  <img src="FoodSpoilageSystem/imagesdocumentation/8ecc9ec6-ec73-4a4e-ad15-4044ad8c6da5.jpg" alt="Photo 6" width="720">
+</p>
